@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "physics-vocabulary registry (project-vocabulary.json or a shared registry)",
+  "type": "object",
+  "required": ["version", "terms"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "shared_registry": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Path of a shared registry that this registry adds to; ~ expands, and a relative path starts at this file."
+    },
+    "terms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["term", "standard_meaning"],
+        "additionalProperties": false,
+        "properties": {
+          "term": { "type": "string", "minLength": 1 },
+          "standard_meaning": { "type": "string", "minLength": 1 },
+          "allowed_names": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "minItems": 1
+          },
+          "avoid_names": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "minItems": 1
+          }
+        }
+      }
+    }
+  }
+}
